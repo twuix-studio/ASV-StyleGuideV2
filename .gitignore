@@ -1,0 +1,8 @@
+bin
+obj
+*.suo
+/ASVControls/bin
+/ASVControls/obj
+/ASVControls/bin/x86/Debug
+/.vs
+*.user
