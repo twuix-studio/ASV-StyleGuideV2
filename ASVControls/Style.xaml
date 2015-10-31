@@ -949,27 +949,7 @@
         </Setter>
     </Style>
 
-    <!-- ComboBoxItem -->
-    <Style TargetType="ComboBoxItem">
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ComboBoxItem">
-                    <Border x:Name="Border"  Padding="2" SnapsToDevicePixels="true" Background="Transparent">
-                        <ContentPresenter x:Name="contentPresenter" />
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <!--<Setter Property="Opacity" Value="0.5" />-->
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="Border" Value="{StaticResource ButtonBorderMouseOver}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+
 
     <!-- ComboBoxToggleButton -->
     <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
@@ -1089,6 +1069,28 @@
         </Setter>
     </Style>
 
+    <!-- ComboBoxItem -->
+    <Style TargetType="ComboBoxItem">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBoxItem">
+                    <Border x:Name="Border"  Padding="2" SnapsToDevicePixels="true" Background="Transparent">
+                        <ContentPresenter x:Name="contentPresenter" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="Border" Value="{StaticResource ButtonBorderMouseOver}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- ComboBox -->
     <Style TargetType="{x:Type ComboBox}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource ComboBoxFocusVisual}"/>
@@ -1127,7 +1129,7 @@
                                 <Border x:Name="DropDownBorder" 
                                     BorderBrush="{StaticResource BackgroundDarkBrush}" 
                                     BorderThickness="1" 
-                                    Background="{StaticResource ButtonBackground}">
+                                    Background="{StaticResource BackgroundDarkBrush}">
                                     <ScrollViewer x:Name="DropDownScrollViewer">
                                         <Grid RenderOptions.ClearTypeHint="Enabled">
                                             <Canvas HorizontalAlignment="Left" 

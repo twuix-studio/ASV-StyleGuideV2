@@ -188,11 +188,11 @@
                         </ComboBox>
 
                         <!-- Row 02: ComboBox component -->
-                        <Label x:Name="label2_Copy1" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right" Content="Combo disable" IsEnabled="False" Margin="0,3,0,2.5" d:LayoutOverrides="LeftMargin, RightMargin"/>
-                        <ComboBox x:Name="comboBox2"  Grid.Column="1" Grid.Row="2" Style="{DynamicResource HighVoltageComboBox}" IsEnabled="False" Height="26" Margin="0,0,0.5,7" IsSynchronizedWithCurrentItem="True">
+                        <Label x:Name="label2_Copy1" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right" Content="Combo disable" IsEnabled="False" Margin="0,3,0,13" d:LayoutOverrides="LeftMargin, RightMargin"/>
+                        <ComboBox x:Name="comboBox2"  Grid.Column="1" Grid.Row="2" Style="{DynamicResource HighVoltageComboBox}" IsEnabled="False" Margin="0,0,0.5,9" IsSynchronizedWithCurrentItem="True">
                             <ComboBoxItem Content="Disabled" IsSelected="True"/>
                         </ComboBox>
-                        <TextBox   Grid.Column="2" Grid.Row="2" IsEnabled="False" Text="Disabled" Height="Auto" Margin="4.5,0,0,5" />
+                        <TextBox   Grid.Column="2" Grid.Row="2" IsEnabled="False" Text="Disabled" Margin="4.5,0,0,9" />
 
                         <!-- Row 03: ComboBox component -->
                         <ComboBox x:Name="comboBox3"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" Style="{DynamicResource NumericComboBox}" Height="26" Margin="0,0,0,6" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
