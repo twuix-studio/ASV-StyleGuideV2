@@ -9,66 +9,58 @@
         SizeToContent="WidthAndHeight" d:DesignHeight="821.5" >
 
     <StackPanel d:LayoutOverrides="LeftMargin, RightMargin" Margin="0,0,0,-0.5">
-        <Menu d:LayoutOverrides="TopPosition, BottomPosition" Height="40" VerticalAlignment="Top">
-            <Menu.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <DockPanel HorizontalAlignment="Stretch"/>
-                </ItemsPanelTemplate>
-            </Menu.ItemsPanel>
-            <Image x:Name="image" Source="FEI_logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="UniformToFill" Height="13.334" Width="39" RenderTransformOrigin="0.493,0.422" />
-            <MenuItem Header="File">
-                <MenuItem IsCheckable="True" Header="New Item">
-                    <MenuItem Header="Item" />
+        <StackPanel Orientation="Horizontal">
+            <Menu d:LayoutOverrides="TopPosition, BottomPosition" Height="40" VerticalAlignment="Top">
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <DockPanel HorizontalAlignment="Stretch"/>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+                <Image x:Name="image" Source="FEI_logo.png" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="UniformToFill" Height="13.334" Width="39" RenderTransformOrigin="0.493,0.422" />
+
+                <MenuItem Header="File" >
+                    <MenuItem IsCheckable="True" Header="New Item"  >
+                        <MenuItem Header="Item" />
+                    </MenuItem>
+                    <MenuItem Header="New Project">
+                        <MenuItem IsCheckable="True" IsEnabled="False" Header="Project"/>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Save" IsEnabled="False"/>
+                    <MenuItem Header="Save All" IsEnabled="False"/>
+                    <MenuItem Header="Save Copy of Project"/>
+                    <Separator/>
+                    <MenuItem Header="Exit"/>
+                    <Separator/>
                 </MenuItem>
-                <MenuItem Header="New Project">
-                    <MenuItem IsCheckable="True" IsEnabled="False" Header="Project"/>
+                <MenuItem Header="Edit" IsEnabled="False">
+                    <MenuItem IsCheckable="True" Header="Item">
+                        <MenuItem Header="Item" />
+                    </MenuItem>
                 </MenuItem>
-                <Separator/>
-                <MenuItem Header="Save" IsEnabled="False"/>
-                <MenuItem Header="Save All" IsEnabled="False"/>
-                <MenuItem Header="Save Copy of Project"/>
-                <Separator/>
-                <MenuItem Header="Exit"/>
-                <Separator/>
-            </MenuItem>
-            <MenuItem Header="Edit" IsEnabled="False">
-                <MenuItem IsCheckable="True" Header="Item">
-                    <MenuItem Header="Item" />
+                <MenuItem Header="View">
+                    <MenuItem IsCheckable="True" Header="Item">
+                        <MenuItem Header="Item" />
+                    </MenuItem>
                 </MenuItem>
-            </MenuItem>
-            <MenuItem Header="View">
-                <MenuItem IsCheckable="True" Header="Item">
-                    <MenuItem Header="Item" />
-                </MenuItem>
-            </MenuItem>
-            <MenuItem Header="Help" IsEnabled="True" HorizontalAlignment="Right"/>
-        </Menu>
+            </Menu>
+            <TextBlock Text="Auto Slice &amp; View 4" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="300,0,0,0" Style="{StaticResource AppTitle}"/>
+        </StackPanel>
         <StackPanel Orientation="Horizontal" Height="643">
             <TabControl VerticalAlignment="Top" Margin="0">
                 <TabItem Header="TabItem">
                     <ScrollViewer ForceCursor="True" Height="612" Width="738" HorizontalAlignment="Left">
                         <Canvas>
                             <ListView x:Name="listView" Height="100" Width="343">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn/>
-                                    </GridView>
-                                </ListView.View>
                                 <ListViewItem Content="Other Item" Margin="0"/>
                                 <ListViewItem Content="ListViewItem" Margin="0"/>
                             </ListView>
                             <Controls:TextBoxWithPlaceholder x:Name="textBoxWithPlaceholder" TextWrapping="Wrap" Text="TextBoxWithPlaceholder" d:LayoutOverrides="Height" Canvas.Left="43.5" Canvas.Top="145"/>
                             <Button x:Name="button1" Content="Button" Canvas.Left="197" Canvas.Top="202" Width="75" d:LayoutOverrides="Height" ToolTip="this is a tooltip this is a tooltip v this is a tooltip"/>
-                            <ToggleButton Content="BOB">
-                                <ToggleButton.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Header="Menu item 1" />
-                                        <MenuItem Header="Menu item 2" />
-                                    </ContextMenu>
-                                </ToggleButton.ContextMenu>
-                            </ToggleButton>
                             <CheckBox x:Name="checkBoxSwitch" Content="Switch CheckBox"  Grid.Column="1" Grid.Row="13" IsEnabled="True" Style="{StaticResource SwitchCheckBox}" Height="22" Width="46" Canvas.Left="368" Canvas.Top="112" />
                             <CheckBox x:Name="checkBoxSwitchDisabled" Content="Disabled Switch" Grid.Column="2" Grid.Row="13" IsEnabled="False" Style="{StaticResource SwitchCheckBox}" Height="22" Width="46" Canvas.Left="298" Canvas.Top="112"/>
+                            
+                            <Button Canvas.Left="151" Canvas.Top="329" Style="{StaticResource PlusButton}" Content="+" />
                             <!--<controlsv2:DropDownButtonWithMenu Content="BOB 2">
                                 <controlsv2:DropDownButtonWithMenu.ContextMenu>
                                     <ContextMenu>
@@ -257,12 +249,17 @@
                 </Expander>
             </StackPanel>
         </StackPanel>
-        <StackPanel Height="79" Background="{StaticResource BackgroundDarkBrush}" Orientation="Horizontal" VerticalAlignment="Bottom">
+        <DockPanel Style="{StaticResource FlowPanel}">
             <ToggleButton Margin="0" Height="Auto" Content="PROJECT" Style="{DynamicResource FlowToggleButtonStyle}" d:LayoutOverrides="VerticalAlignment, TopMargin, BottomMargin" />
             <ToggleButton Margin="0" Height="Auto" Content="SAMPLE PREPARATION" Style="{DynamicResource FlowToggleButtonStyle}" d:LayoutOverrides="VerticalAlignment, TopMargin, BottomMargin" />
             <ToggleButton Margin="0" Height="Auto" Content="MILLING" Style="{DynamicResource FlowToggleButtonStyle}" d:LayoutOverrides="VerticalAlignment, TopMargin, BottomMargin" />
-            <ToggleButton Margin="0" Height="Auto" Content="IMAGE" Style="{DynamicResource FlowToggleButtonStyle}" d:LayoutOverrides="VerticalAlignment, TopMargin, BottomMargin" />
-        </StackPanel>
+            <ToggleButton Margin="0" Height="Auto" Content="IMAGE" Style="{DynamicResource FlowToggleButtonStyle}" d:LayoutOverrides="VerticalAlignment, TopMargin, BottomMargin" IsEnabled="False"/>
+
+            <StackPanel VerticalAlignment="Center">
+                <ProgressBar Margin="5"/>
+                <ProgressBar Margin="5"  Value="50"/>
+            </StackPanel>
+        </DockPanel>
         <StatusBar Height="33" Margin="0,0,0,0" VerticalAlignment="Bottom" >
             <StatusBarItem Content="StatusBarItem" Height="26" VerticalAlignment="Bottom"/>
         </StatusBar>

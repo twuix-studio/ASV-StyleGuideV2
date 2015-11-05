@@ -41,7 +41,6 @@
     <Color x:Key="LightBackgroundColor">#536570</Color>
     <Color x:Key="LightDisabledBackgroundColor">#667C8A</Color>
     <Color x:Key="ForegroundColor">#D7DDE1</Color>
-    <!--<Color x:Key="ForegroundDisableColor">#FFA0A0A0</Color>-->
     <Color x:Key="ForegroundDisableColor">#828D94</Color>
     <Color x:Key="HighlightColor">#5AAFEE</Color>
     <Color x:Key="HighlightColorHover">#25A2FF</Color>
@@ -221,18 +220,18 @@
                                         RecognizesAccessKey="True" 
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
             </DockPanel>
-            <Popup x:Name="PART_Popup"
+            <Popup x:Name="PART_Popup" 
                         AllowsTransparency="true" 
                         Focusable="false" 
                         HorizontalOffset="1" 
                         IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
                         PopupAnimation="{StaticResource {x:Static SystemParameters.MenuPopupAnimationKey}}" 
-                        Placement="Bottom" 
+                        Placement="Bottom"
                         VerticalOffset="-1">
                 <Border x:Name="Shdw" Background="Transparent">
-                    <Border x:Name="SubMenuBorder" BorderBrush="{StaticResource BorderLightBrush}" BorderThickness="1" Background="{StaticResource BackgroundDarkBrush}">
+                    <Border x:Name="SubMenuBorder" BorderBrush="{StaticResource BorderLightBrush}" BorderThickness="0" Background="{StaticResource BackgroundDarkBrush}">
                         <ScrollViewer x:Name="SubMenuScrollViewer" 
-                                            Margin="1,0" 
+                                            Margin="0" 
                                             Style="{StaticResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                             <Grid RenderOptions.ClearTypeHint="Enabled">
                                 <Canvas HorizontalAlignment="Left" 
@@ -247,7 +246,7 @@
                                 <ItemsPresenter x:Name="ItemsPresenter" 
                                                     KeyboardNavigation.DirectionalNavigation="Cycle"
                                                     Grid.IsSharedSizeScope="true" 
-                                                    Margin="2" 
+                                                    Margin="0" 
                                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                                     KeyboardNavigation.TabNavigation="Cycle"/>
                             </Grid>
@@ -391,18 +390,18 @@
             <Popup x:Name="PART_Popup" 
                         AllowsTransparency="true" 
                         Focusable="false" 
-                        HorizontalOffset="-2" 
+                        HorizontalOffset="-4" 
                         IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" 
                         PopupAnimation="{StaticResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
                         Placement="Right" 
-                        VerticalOffset="-3">
+                        VerticalOffset="0">
                 <Border x:Name="Shdw" Background="Transparent">
                     <Border x:Name="SubMenuBorder" 
                                 BorderBrush="{StaticResource BorderLightBrush}"
-                                BorderThickness="1"
+                                BorderThickness="0"
                                 Background="{StaticResource BackgroundDarkBrush}">
                         <ScrollViewer x:Name="SubMenuScrollViewer" 
-                                            Margin="1,0" 
+                                            Margin="0" 
                                             Style="{StaticResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                             <Grid RenderOptions.ClearTypeHint="Enabled">
                                 <Canvas HorizontalAlignment="Left"
@@ -417,7 +416,7 @@
                                 <ItemsPresenter x:Name="ItemsPresenter" 
                                                     KeyboardNavigation.DirectionalNavigation="Cycle"
                                                     Grid.IsSharedSizeScope="true" 
-                                                    Margin="2" 
+                                                    Margin="0" 
                                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                                     KeyboardNavigation.TabNavigation="Cycle"/>
                             </Grid>
@@ -459,10 +458,8 @@
     </ControlTemplate>
     <ControlTemplate x:Key="{ComponentResourceKey ResourceId=SubmenuItemTemplateKey, TypeInTargetAssembly={x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
         <Grid SnapsToDevicePixels="true">
-            <Rectangle x:Name="Bg" 
-                           Fill="{TemplateBinding Background}" 
-                           StrokeThickness="1"/>
-            <Rectangle x:Name="InnerBorder" Margin="1"/>
+            <Rectangle x:Name="Bg" Fill="{TemplateBinding Background}" />
+            <Rectangle x:Name="InnerBorder" Margin="0"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition MinWidth="14" SharedSizeGroup="MenuItemIconColumnGroup" Width="Auto"/>
@@ -528,6 +525,8 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="MinHeight" Value="21"/>
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Template" Value="{StaticResource {ComponentResourceKey ResourceId=SubmenuItemTemplateKey, TypeInTargetAssembly={x:Type MenuItem}}}"/>
         <Style.Triggers>
@@ -538,17 +537,20 @@
             </Trigger>
             <Trigger Property="Role" Value="TopLevelItem">
                 <Setter Property="Height" Value="25"/>
-                <Setter Property="Padding" Value="7,6,8,3"/>
+                <Setter Property="Padding" Value="7,6,8,6"/>
+                <Setter Property="Margin"  Value="-4,0"/>
                 <Setter Property="Template" Value="{StaticResource {ComponentResourceKey ResourceId=TopLevelItemTemplateKey, TypeInTargetAssembly={x:Type MenuItem}}}"/>
             </Trigger>
             <Trigger Property="Role" Value="SubmenuHeader">
-                <Setter Property="Height" Value="21"/>
+                <Setter Property="Height" Value="25"/>
                 <Setter Property="Padding" Value="2,4,2,2"/>
+                <Setter Property="Margin"  Value="-4,0"/>
                 <Setter Property="Template" Value="{StaticResource {ComponentResourceKey ResourceId=SubmenuHeaderTemplateKey, TypeInTargetAssembly={x:Type MenuItem}}}"/>
             </Trigger>
             <Trigger Property="Role" Value="SubmenuItem">
-                <Setter Property="Height" Value="21"/>
+                <Setter Property="Height" Value="25"/>
                 <Setter Property="Padding" Value="2,4,2,2"/>
+                <Setter Property="Margin"  Value="-4,0"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -577,7 +579,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" Value="0.5" />
+                            <Setter Property="Opacity" Value="0.7" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -623,7 +625,7 @@
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="{StaticResource BackgroundDarkBrush}"/>
-        <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundDarkBrush}"/> 
         <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
 
         <Setter Property="Template">
@@ -708,7 +710,7 @@
                             <Setter Property="Foreground" Value="{StaticResource ForegroundDisableBrush}"/>
                             <!--<Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
                             <Setter Property="BorderBrush" Value="{StaticResource ButtonBorder}"/>-->
-                            <Setter Property="Opacity" Value="0.5" />
+                            <Setter Property="Opacity" Value="0.7" />
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="BorderBrush" Value="Black" />
@@ -789,7 +791,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value="0.5" />
+                            <Setter Property="Opacity" Value="0.7" />
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="BorderBrush" Value="Black" />
@@ -876,7 +878,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
-                            <Setter Property="Opacity" Value="0.5" />
+                            <Setter Property="Opacity" Value="0.7" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource ButtonBackgroundMouseOver}" />
@@ -915,7 +917,7 @@
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
-                            <Setter Property="Opacity" Value="0.5" />
+                            <Setter Property="Opacity" Value="0.7" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource ButtonBackgroundMouseOver}" />
@@ -989,7 +991,7 @@
                             <Setter Property="Background" Value="{StaticResource ActiveBrush}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <!--<Setter Property="Opacity" Value="0.5" />-->
+                            <!--<Setter Property="Opacity" Value="0.7" />-->
                         </Trigger>
                         <Trigger Property="IsChecked" Value="true">
                             <Setter Property="Background" Value="{StaticResource ActiveBrush}"/>
@@ -1050,7 +1052,7 @@
                             <Setter Property="Background" TargetName="PopUpButton" Value="{StaticResource ActiveBrush}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <!--<Setter Property="Opacity" Value="0.5" />-->
+                            <!--<Setter Property="Opacity" Value="0.7" />-->
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1173,7 +1175,7 @@
                             <Setter Property="Height" TargetName="DropDownBorder" Value="95"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <!--<Setter Property="Opacity" Value="0.5" />-->
+                            <!--<Setter Property="Opacity" Value="0.7" />-->
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -1270,7 +1272,7 @@
                             <Setter Property="Padding" Value="4,0,0,0"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" Value="0.5" />
+                            <Setter Property="Opacity" Value="0.7" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" TargetName="CheckBoxBorder" Value="{StaticResource ActiveBrush}"/>
@@ -1338,7 +1340,7 @@
                             <Setter Property="Padding" Value="4,0,0,0"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" Value="0.5"/>
+                            <Setter Property="Opacity" Value="0.7"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" TargetName="RadioButtonBorder" Value="{StaticResource ActiveBrush}"/>
@@ -1614,7 +1616,7 @@
                             <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderLeftHeaderStyle}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" Value="0.5" />
+                            <Setter Property="Opacity" Value="0.7" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -2416,7 +2418,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value="0.5" />
+                            <Setter Property="Opacity" Value="0.7" />
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="BorderBrush" Value="Black" />
@@ -2483,7 +2485,7 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" Value="0.5" />
+                            <Setter Property="Opacity" Value="0.7" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource ButtonBackgroundMouseOver}" />
@@ -2523,7 +2525,7 @@
                                 <ContentPresenter Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"  />
                             </StackPanel>
                         </Border>
-                        <Path x:Name="arrow" Data="{StaticResource RightArrow2}" Grid.Column="1" Margin="0,0,-10,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        <Path x:Name="arrow" Data="{StaticResource RightArrow2}" Grid.Column="1" Margin="0,0,-10,0" VerticalAlignment="Center" HorizontalAlignment="Right" />
                     </Grid>
 
                     <ControlTemplate.Triggers>
@@ -2532,22 +2534,21 @@
                             <Setter TargetName="ButtonBorder" Property="Background" Value="Transparent" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource HighlightGradientBrush}" />
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource ButtonBackgroundMouseOver}" />
                             <Setter TargetName="icon" Property="Fill" Value="White" />
-                            <Setter TargetName="arrow" Property="Fill" Value="{StaticResource HighlightGradientBrush}" />
+                            <Setter TargetName="arrow" Property="Fill" Value="{StaticResource ButtonBackgroundMouseOver}" />
                             <Setter Property="Foreground" Value="White" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource HighlightGradientBrush}" />
+                            <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.7" />
                             <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{StaticResource ButtonBorderDisabled}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource ButtonBackgroundMouseOver}" />
-                            <Setter TargetName="arrow" Property="Fill" Value="{StaticResource HighlightGradientBrush}" />
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource ButtonBackgroundPressed}" />
+                            <Setter TargetName="arrow" Property="Fill" Value="{StaticResource ButtonBackgroundPressed}" />
                             <Setter TargetName="icon" Property="Fill" Value="White" />
                             <Setter Property="Foreground" Value="White" />
                         </Trigger>
-
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -2697,6 +2698,55 @@
         </Setter>
     </Style>
 
+    <Style x:Key="AppTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="FontFamily" Value="Segoe UI Light" />
+        <Setter Property="Foreground" Value="{StaticResource ForegroundDisableBrush}" />
+    </Style>
 
+    <Style x:Key="FlowPanel" TargetType="DockPanel">
+        <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
+    </Style>
+
+    <Style x:Key="PlusButton" TargetType="Button" BasedOn="{StaticResource {x:Type ButtonBase}}" >
+        <Setter Property="Width" Value="92" />
+        <Setter Property="Height" Value="92" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border TextBlock.Foreground="{StaticResource ForegroundBrush}" 
+                            x:Name="ButtonBorder" CornerRadius="46"
+                            Background="{StaticResource ButtonBackground}" BorderBrush="{StaticResource BackgroundDarkBrush}"
+                            BorderThickness="1">
+                        <ContentPresenter Margin="0,-34,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontFamily="Segoe UI Light" TextElement.FontSize="100"
+                                RecognizesAccessKey="True" />
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
+                            <Setter Property="Opacity" Value="0.7" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource ButtonBackgroundMouseOver}" />
+                            <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{StaticResource ButtonBorderHighlighted}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource ButtonBackgroundPressed}" />
+                            <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{StaticResource ButtonBorderHighlighted}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="true" />
+                            </MultiTrigger.Conditions>
+
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource ButtonBackgroundCheckedMouseOver}" />
+                            <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{StaticResource ButtonBorderHighlighted}" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>
