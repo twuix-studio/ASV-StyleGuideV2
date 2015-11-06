@@ -86,6 +86,7 @@
     <SolidColorBrush x:Key="TabItemHotBorderBrush" Color="{StaticResource HotColor}"/>
     <SolidColorBrush x:Key="TabItemDisabledBackground" Color="{StaticResource DarkBackgroundColor}"/>
     <SolidColorBrush x:Key="TabItemDisabledBorderBrush" Color="{StaticResource DarkBackgroundColor}"/>
+    <SolidColorBrush x:Key="TabPanelHeaderBackground" Color="{StaticResource WindowBackgroundColor}"/>
 
     <SolidColorBrush x:Key="ScrollViewerBackground" Color="Transparent" />
     <SolidColorBrush x:Key="VerticalScrollBarBackground" Color="{StaticResource BackgroundColor}"/>
@@ -623,7 +624,7 @@
         <Setter Property="Height" Value="28"/>
         <Setter Property="Margin" Value="1,0,3,0"/>
         <Setter Property="OverridesDefaultStyle" Value="true" />
-        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderThickness" Value="0,1,0,1" />
         <Setter Property="BorderBrush" Value="{StaticResource BackgroundDarkBrush}"/>
         <Setter Property="Background" Value="{StaticResource BackgroundDarkBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
@@ -1023,19 +1024,19 @@
                         SnapsToDevicePixels="true">
                         <Border x:Name="PopUpButton"
                             HorizontalAlignment="Right"
-                            Background="{StaticResource BackgroundBrush}"
-                            CornerRadius="3"
-                            Margin="1"
-                            Width="15">
+                            Background="Transparent"
+                            CornerRadius="2"
+                            Margin="0"
+                            Width="21">
                             <Path x:Name="Arrow" Data="{StaticResource ComboBoxArrow}" 
                                 HorizontalAlignment="Center" 
                                 VerticalAlignment="Center"
-                                Width="5.5"
-                                Height="5.5" 
+                                Width="7"
+                                Height="7" 
                                 Stretch="Fill" 
                                 Fill="{StaticResource ForegroundBrush}"
                                 RenderTransformOrigin="0.5,0.5" 
-                                Margin="0,4,0,7">
+                                Margin="0,0,0,2">
                                 <Path.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform/>
@@ -1152,7 +1153,7 @@
                             </Border>
                         </Popup>
                         <ToggleButton BorderBrush="{StaticResource BackgroundDarkBrush}" 
-                            Background="{StaticResource ButtonBackground}" 
+                            Background="{StaticResource BackgroundBrush}" 
                             Grid.ColumnSpan="2" 
                             IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                             Style="{StaticResource ComboBoxReadonlyToggleButton}"/>
@@ -1832,7 +1833,7 @@
                             <RowDefinition x:Name="RowDefinition1" Height="*"/>
                         </Grid.RowDefinitions>
                         <TabPanel x:Name="HeaderPanel" Grid.Column="0" IsItemsHost="true"
-                            Grid.Row="0" KeyboardNavigation.TabIndex="1" Panel.ZIndex="1"/>
+                            Grid.Row="0" KeyboardNavigation.TabIndex="1" Panel.ZIndex="1" Background="{StaticResource TabPanelHeaderBackground}"/>
                         <Border x:Name="ContentPanel"
                             BorderBrush="{StaticResource WindowBackgroundBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
@@ -2289,7 +2290,7 @@
         <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BorderDarkBrush}"/>
         <Setter Property="BorderThickness" Value="1,0,1,0" />
-        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>    
     </Style>
 
     <Style TargetType="{x:Type ListViewItem}">
@@ -2615,7 +2616,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0"  TextBlock.Foreground="{TemplateBinding Foreground}"  x:Name="ButtonBorder" CornerRadius="0" Background="{StaticResource BackgroundDarkBrush}" BorderBrush="{StaticResource ButtonBorder}" BorderThickness="0">
+                        <Border Grid.Column="0"  TextBlock.Foreground="{TemplateBinding Foreground}" x:Name="ButtonBorder" CornerRadius="0" Background="{StaticResource BackgroundDarkBrush}" BorderBrush="{StaticResource ButtonBorder}" BorderThickness="0">
                             <StackPanel Orientation="Horizontal"   VerticalAlignment="Center" Margin="10" >
                                 <Path x:Name="icon" Fill="{StaticResource ForegroundDisableBrush}" VerticalAlignment="Center" Margin="10,0,10,0" Data="  M 22.937,7.438 C 23.083,7.583 23.229,7.771 23.375,8.000 L 16.000,8.000 L 16.000,0.625 C 16.229,0.771 16.417,0.917 16.562,1.062 L 22.937,7.438 Z M 15.500,10.000 L 24.000,10.000 L 24.000,26.500 C 24.000,26.917 23.854,27.271 23.562,27.562 C 23.271,27.854 22.917,28.000 22.500,28.000 L 1.500,28.000 C 1.083,28.000 0.729,27.854 0.437,27.562 C 0.146,27.271 -0.000,26.917 -0.000,26.500 L -0.000,1.500 C -0.000,1.083 0.146,0.729 0.437,0.438 C 0.729,0.146 1.083,0.000 1.500,0.000 L 14.000,0.000 L 14.000,8.500 C 14.000,8.917 14.146,9.271 14.437,9.562 C 14.729,9.854 15.083,10.000 15.500,10.000 Z M 18.000,21.500 L 18.000,20.500 C 18.000,20.354 17.953,20.234 17.859,20.141 C 17.766,20.047 17.646,20.000 17.500,20.000 L 6.500,20.000 C 6.354,20.000 6.234,20.047 6.141,20.141 C 6.047,20.234 6.000,20.354 6.000,20.500 L 6.000,21.500 C 6.000,21.646 6.047,21.766 6.141,21.859 C 6.234,21.953 6.354,22.000 6.500,22.000 L 17.500,22.000 C 17.646,22.000 17.766,21.953 17.859,21.859 C 17.953,21.766 18.000,21.646 18.000,21.500 Z M 18.000,17.500 L 18.000,16.500 C 18.000,16.354 17.953,16.234 17.859,16.141 C 17.766,16.047 17.646,16.000 17.500,16.000 L 6.500,16.000 C 6.354,16.000 6.234,16.047 6.141,16.141 C 6.047,16.234 6.000,16.354 6.000,16.500 L 6.000,17.500 C 6.000,17.646 6.047,17.766 6.141,17.859 C 6.234,17.953 6.354,18.000 6.500,18.000 L 17.500,18.000 C 17.646,18.000 17.766,17.953 17.859,17.859 C 17.953,17.766 18.000,17.646 18.000,17.500 Z M 18.000,13.500 L 18.000,12.500 C 18.000,12.354 17.953,12.234 17.859,12.141 C 17.766,12.047 17.646,12.000 17.500,12.000 L 6.500,12.000 C 6.354,12.000 6.234,12.047 6.141,12.141 C 6.047,12.234 6.000,12.354 6.000,12.500 L 6.000,13.500 C 6.000,13.646 6.047,13.766 6.141,13.859 C 6.234,13.953 6.354,14.000 6.500,14.000 L 17.500,14.000 C 17.646,14.000 17.766,13.953 17.859,13.859 C 17.953,13.766 18.000,13.646 18.000,13.500 Z" />
                                 <ContentPresenter Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"  />
@@ -2633,7 +2634,7 @@
                             <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource ButtonBackgroundMouseOver}" />
                             <Setter TargetName="icon" Property="Fill" Value="White" />
                             <Setter TargetName="arrow" Property="Fill" Value="{StaticResource ButtonBackgroundMouseOver}" />
-                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="TextBlock.Foreground" Value="White" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.7" />
@@ -2795,9 +2796,10 @@
     </Style>
 
     <Style x:Key="AppTitle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="30" />
+        <Setter Property="FontSize" Value="32" />
         <Setter Property="FontFamily" Value="Segoe UI Light" />
         <Setter Property="Foreground" Value="{StaticResource ForegroundDisableBrush}" />
+        <Setter Property="Opacity" Value="0.7" />
     </Style>
 
     <Style x:Key="FlowPanel" TargetType="DockPanel">
