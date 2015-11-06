@@ -42,9 +42,10 @@
     <Color x:Key="LightDisabledBackgroundColor">#667C8A</Color>
     <Color x:Key="ForegroundColor">#D7DDE1</Color>
     <Color x:Key="ForegroundDisableColor">#828D94</Color>
-    <Color x:Key="HighlightColor">#5AAFEE</Color>
-    <Color x:Key="HighlightColorHover">#25A2FF</Color>
-    <Color x:Key="HotColor">#5EB0EC</Color>
+    <Color x:Key="HighlightColor">#A8A46A</Color>
+    <Color x:Key="HighlightColorHover">#ABA862</Color>
+    <!--<Color x:Key="HighlightColor">#5AAFEE</Color>
+    <Color x:Key="HighlightColorHover">#25A2FF</Color>-->
 
     <!--Base Brushes-->
     <SolidColorBrush x:Key="WindowBackgroundBrush" Color="{StaticResource WindowBackgroundColor}"/>
@@ -81,9 +82,9 @@
 
     <SolidColorBrush x:Key="TabControlBackgroundBrush" Color="{StaticResource BackgroundColor}"/>
     <SolidColorBrush x:Key="TabControlBorderBrush" Color="{StaticResource DisabledBackgroundColor}"/>
-    <SolidColorBrush x:Key="TabItemHotBackground" Color="{StaticResource HotColor}"/>
+    <SolidColorBrush x:Key="TabItemHotBackground" Color="{StaticResource HighlightColor}"/>
     <SolidColorBrush x:Key="TabItemSelectedBackground" Color="{StaticResource LightBackgroundColor}"/>
-    <SolidColorBrush x:Key="TabItemHotBorderBrush" Color="{StaticResource HotColor}"/>
+    <SolidColorBrush x:Key="TabItemHotBorderBrush" Color="{StaticResource HighlightColor}"/>
     <SolidColorBrush x:Key="TabItemDisabledBackground" Color="{StaticResource DarkBackgroundColor}"/>
     <SolidColorBrush x:Key="TabItemDisabledBorderBrush" Color="{StaticResource DarkBackgroundColor}"/>
     <SolidColorBrush x:Key="TabPanelHeaderBackground" Color="{StaticResource WindowBackgroundColor}"/>

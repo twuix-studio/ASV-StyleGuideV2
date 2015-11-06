@@ -51,10 +51,6 @@
                 <TabItem Header="TabItem">
                     <ScrollViewer ForceCursor="True" Height="612" Width="738" HorizontalAlignment="Left">
                         <Canvas>
-                            <ListView x:Name="listView" Height="100" Width="343" Canvas.Left="345" Canvas.Top="361">
-                                <ListViewItem Content="Other Item" Margin="0"/>
-                                <ListViewItem Content="ListViewItem" Margin="0"/>
-                            </ListView>
                             <Controls:TextBoxWithPlaceholder x:Name="textBoxWithPlaceholder" TextWrapping="Wrap" Text="TextBoxWithPlaceholder" d:LayoutOverrides="Height" Canvas.Left="43.5" Canvas.Top="145"/>
                             <Button x:Name="button1" Content="Button" Canvas.Left="197" Canvas.Top="202" Width="75" d:LayoutOverrides="Height" ToolTip="this is a tooltip this is a tooltip v this is a tooltip"/>
                             <CheckBox x:Name="checkBoxSwitch" Content="Switch CheckBox"  Grid.Column="1" Grid.Row="13" IsEnabled="True" Style="{StaticResource SwitchCheckBox}" Height="22" Width="46" Canvas.Left="368" Canvas.Top="112" />
@@ -84,7 +80,10 @@
                 </TabItem>
             </TabControl>
             <StackPanel  Width="400" Margin="0,0,0,1" Background="{DynamicResource CornerBorder}" >
-                <Canvas Height="100" Width="400" Background="{DynamicResource PanelBackground}" Margin="1,0,-1,0"/>
+                <ListView x:Name="listView" Height="100">
+                    <ListViewItem Content="Other Item" Margin="0"/>
+                    <ListViewItem Content="ListViewItem" Margin="0"/>
+                </ListView>
                 <Expander x:Name="FeatureExpander" Header="EXPANDER" IsExpanded="True">
                     <Grid Margin="5">
                         <Grid.ColumnDefinitions>
