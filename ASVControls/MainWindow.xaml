@@ -9,7 +9,7 @@
         SizeToContent="WidthAndHeight" d:DesignHeight="821.5" >
 
     <StackPanel d:LayoutOverrides="LeftMargin, RightMargin" Margin="0,0,0,-0.5">
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Background="{DynamicResource ApplicationBackground}">
             <Menu d:LayoutOverrides="TopPosition, BottomPosition" Height="40" VerticalAlignment="Top">
                 <Menu.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -51,16 +51,15 @@
                 <TabItem Header="TabItem">
                     <ScrollViewer ForceCursor="True" Height="612" Width="738" HorizontalAlignment="Left">
                         <Canvas>
-                            <ListView x:Name="listView" Height="100" Width="343">
-                                <ListViewItem Content="Other Item" Margin="0"/>
-                                <ListViewItem Content="ListViewItem" Margin="0"/>
-                            </ListView>
                             <Controls:TextBoxWithPlaceholder x:Name="textBoxWithPlaceholder" TextWrapping="Wrap" Text="TextBoxWithPlaceholder" d:LayoutOverrides="Height" Canvas.Left="43.5" Canvas.Top="145"/>
                             <Button x:Name="button1" Content="Button" Canvas.Left="197" Canvas.Top="202" Width="75" d:LayoutOverrides="Height" ToolTip="this is a tooltip this is a tooltip v this is a tooltip"/>
                             <CheckBox x:Name="checkBoxSwitch" Content="Switch CheckBox"  Grid.Column="1" Grid.Row="13" IsEnabled="True" Style="{StaticResource SwitchCheckBox}" Height="22" Width="46" Canvas.Left="368" Canvas.Top="112" />
                             <CheckBox x:Name="checkBoxSwitchDisabled" Content="Disabled Switch" Grid.Column="2" Grid.Row="13" IsEnabled="False" Style="{StaticResource SwitchCheckBox}" Height="22" Width="46" Canvas.Left="298" Canvas.Top="112"/>
 
                             <Button Canvas.Left="151" Canvas.Top="329" Style="{StaticResource PlusButton}" Content="+" />
+                            <ComboBox x:Name="comboBox" Width="120" d:LayoutOverrides="Height" Canvas.Left="345" Canvas.Top="227"/>
+                            <ListBox x:Name="listBox" Height="100" Width="100"/>
+                            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox" Width="120" Canvas.Left="187" Canvas.Top="42"/>
                             <!--<controlsv2:DropDownButtonWithMenu Content="BOB 2">
                                 <controlsv2:DropDownButtonWithMenu.ContextMenu>
                                     <ContextMenu>
@@ -81,61 +80,10 @@
                 </TabItem>
             </TabControl>
             <StackPanel  Width="400" Margin="0,0,0,1" Background="{DynamicResource CornerBorder}" >
-                <Canvas Height="100" Width="400">
-                    <ListView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" MinHeight="50" Background="Transparent"
-						BorderBrush="Transparent" SelectionMode="Single" ItemsSource="{Binding ImagingItems}"
-						SelectedItem="{Binding SelectedImage}" HorizontalContentAlignment="Stretch" Height="100" Width="282">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid MaxWidth="490">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Image Grid.Column="0" Stretch="UniformToFill" Width="24" Height="24" Margin="1"
-										HorizontalAlignment="Left" VerticalAlignment="Center"
-										Source="{Binding AcquisitionType, Converter={StaticResource AcquisitionTypeToIconConverter}, Mode=OneWay}" />
-                                    <TextBlock Grid.Column="1" Margin="1" VerticalAlignment="Center"
-										TextTrimming="CharacterEllipsis"><Run
-											Text="{Binding AcquisitionType, Converter={StaticResource EnumToStringConverter}, Mode=OneWay}" /><Run
-											Text=": " /></TextBlock>
-                                    <TextBlock Grid.Column="2" VerticalAlignment="Center" Margin="1"
-										TextTrimming="CharacterEllipsis"><Run Text="{Binding Name, Mode=OneWay}"
-											FontWeight="Medium" /><Run Text=" | " /></TextBlock>
-                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" Margin="1"
-										TextTrimming="CharacterEllipsis"><Run
-											Text="{Binding Resolution, Mode=OneWay}" /><Run Text=" (" /><Run
-											Text="{Binding BitDepth, Converter={StaticResource EnumToStringConverter}, Mode=OneWay}" /><Run
-											Text=") | " /><Run
-											Text="{Binding DwellTime, Converter={StaticResource TimeToStringConverter}, Mode=OneWay}" /></TextBlock>
-                                    <Button Grid.Column="4" Content="⨯" Command="{Binding DeleteCommand}"
-										VerticalAlignment="Center" VerticalContentAlignment="Center">
-                                        <Button.Style>
-                                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
-                                                <Setter Property="Visibility" Value="Hidden" />
-                                                <Style.Triggers>
-                                                    <DataTrigger
-														Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}, Mode=FindAncestor}}"
-														Value="True">
-                                                        <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
-                                                    <DataTrigger
-														Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}, Mode=FindAncestor}}"
-														Value="True">
-                                                        <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
-                                    </Button>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Canvas>
+                <ListView x:Name="listView" Height="100">
+                    <ListViewItem Content="Other Item" Margin="0"/>
+                    <ListViewItem Content="ListViewItem" Margin="0"/>
+                </ListView>
                 <Expander x:Name="FeatureExpander" Header="EXPANDER" IsExpanded="True">
                     <Grid Margin="5">
                         <Grid.ColumnDefinitions>
