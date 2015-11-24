@@ -56,7 +56,7 @@
                             <CheckBox x:Name="checkBoxSwitch" Content="Switch CheckBox"  Grid.Column="1" Grid.Row="13" IsEnabled="True" Style="{StaticResource SwitchCheckBox}" Height="22" Width="46" Canvas.Left="368" Canvas.Top="112" />
                             <CheckBox x:Name="checkBoxSwitchDisabled" Content="Disabled Switch" Grid.Column="2" Grid.Row="13" IsEnabled="False" Style="{StaticResource SwitchCheckBox}" Height="22" Width="46" Canvas.Left="298" Canvas.Top="112"/>
 
-                            <Button Canvas.Left="151" Canvas.Top="329" Style="{StaticResource PlusButton}" Content="+" />
+                            <Button Canvas.Left="151" Canvas.Top="329" Style="{StaticResource PlusButton}" />
                             <ComboBox x:Name="comboBox" Width="120" d:LayoutOverrides="Height" Canvas.Left="345" Canvas.Top="227"/>
                             <ListBox x:Name="listBox" Height="100" Width="100"/>
                             <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox" Width="120" Canvas.Left="187" Canvas.Top="42"/>
@@ -74,8 +74,8 @@
                 <TabItem Header="TabItem">
                     <Grid  Margin="0,0,0,0">
                         <TextBlock><Hyperlink ><InlineUIContainer>
-									<TextBlock Text="This is some text that should change colour on mouse over" />
-								</InlineUIContainer></Hyperlink></TextBlock>
+                                    <TextBlock Text="This is some text that should change colour on mouse over" />
+                                </InlineUIContainer></Hyperlink></TextBlock>
                     </Grid>
                 </TabItem>
             </TabControl>
@@ -84,7 +84,9 @@
                     <ListViewItem Content="Other Item" Margin="0"/>
                     <ListViewItem Content="ListViewItem" Margin="0"/>
                 </ListView>
-                <Expander x:Name="FeatureExpander" Header="EXPANDER" IsExpanded="True">
+                <Expander x:Name="FeatureExpander" Header="EXPANDER" IsExpanded="True" >
+                    <!--Style="{StaticResource FeatureExpanderStyle}"-->
+
                     <Grid Margin="5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="9*" />
