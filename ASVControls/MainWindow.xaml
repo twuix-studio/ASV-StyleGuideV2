@@ -62,6 +62,8 @@
                             <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox" Width="120" Canvas.Left="187" Canvas.Top="42"/>
 
                             <RepeatButton RenderTransformOrigin="2.933,2.391" Canvas.Left="32" Canvas.Top="25">></RepeatButton>
+                            <Label x:Name="label" Content="Label" Canvas.Left="465" Canvas.Top="145"/>
+                            <Label x:Name="label1" Content="Label" Canvas.Left="368" Canvas.Top="172" IsEnabled="False"/>
                             <!--<controlsv2:DropDownButtonWithMenu Content="BOB 2">
                                 <controlsv2:DropDownButtonWithMenu.ContextMenu>
                                     <ContextMenu>

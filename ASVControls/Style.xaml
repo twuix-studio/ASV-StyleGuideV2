@@ -42,7 +42,8 @@
     <Color x:Key="LightBackgroundColor">#536570</Color>
     <Color x:Key="LightDisabledBackgroundColor">#667C8A</Color>
     <Color x:Key="ForegroundColor">#D7DDE1</Color>
-    <Color x:Key="ForegroundDisableColor">#828D94</Color>
+    <!--Color x:Key="ForegroundDisableColor">#828D94</Color>-->
+    <Color x:Key="ForegroundDisableColor">#96A5AF</Color>
 
     <!--<Color x:Key="DarkerColor">#101417</Color>
     <Color x:Key="DarkBackgroundColor">#243039</Color>
@@ -637,7 +638,8 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Opacity" Value="0.7" />
+                            <Setter Property="Opacity" Value="0.8" />
+                            <!--<Setter Property="TextBlock.Foreground" Value="Red" />-->
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1256,7 +1258,7 @@
                 <Setter Property="Padding" Value="3"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="ContentPresenter.Opacity" Value="0.5" />
+                <Setter Property="ContentPresenter.Opacity" Value="0.7" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -2904,9 +2906,8 @@
                     <Border TextBlock.Foreground="{StaticResource ForegroundBrush}" x:Name="ButtonBorder"
                         CornerRadius="46" Background="{StaticResource ButtonBackground}"
                         BorderBrush="{StaticResource BackgroundDarkBrush}" BorderThickness="1">
-                        <ContentPresenter Margin="0,-34,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"
-                            TextElement.FontFamily="Segoe UI Light" TextElement.FontSize="100" Content="+"
-                            RecognizesAccessKey="True" />
+                        <Path  HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#ffffffff" Data="F1 M 45.000,21.500 L 23.500,21.500 L 23.500,0.000 L 21.500,0.000 L 21.500,21.500 L 0.000,21.500 L 0.000,23.500 L 21.500,23.500 L 21.500,45.000 L 23.500,45.000 L 23.500,23.500 L 45.000,23.500 L 45.000,21.500 Z"/>
+
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
@@ -2940,7 +2941,16 @@
     </Style>
     
     <Style x:Key="ActiveExpanderSeparator" TargetType="Separator" >
-        <Setter Property="Visibility" Value="Collapsed" />
+        <Setter Property="Visibility" Value="Visible" />
+        <Setter Property="Height" Value="NaN" />
+        <Setter Property="Width" Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Separator">
+                    <Border Height="NaN" BorderThickness="2" BorderBrush="Red" Width="2"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="RepeatButton" BasedOn="{StaticResource {x:Type ButtonBase}}"  >
