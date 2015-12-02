@@ -56,11 +56,19 @@
 
     <!--Hihglight colors-->
     <!--<Color x:Key="HighlightColor">#5AAFEE</Color>
-    <Color x:Key="HighlightColorHover">#25A2FF</Color>-->
+    <Color x:Key="HighlightColorHover">#25A2FF</Color>
 
     <Color x:Key="HighlightColorHover">#aba661</Color>
     <Color x:Key="HighlightColor">#989353</Color>
     <Color x:Key="HighlightColorDisabled">#8b874d</Color>
+
+    <Color x:Key="HighlightColorHover">#BAB681</Color>
+    <Color x:Key="HighlightColor">#969368</Color>
+    <Color x:Key="HighlightColorDisabled">#8F8C65</Color>-->
+
+    <Color x:Key="HighlightColorHover">#B4B084</Color>
+    <Color x:Key="HighlightColor">#9F9C71</Color>
+    <Color x:Key="HighlightColorDisabled">#8C8A65</Color>
 
     <!--Base Brushes-->
     <SolidColorBrush x:Key="WindowBackgroundBrush" Color="{StaticResource WindowBackgroundColor}"/>
@@ -1700,7 +1708,7 @@
                     </Border>
                 </ControlTemplate> -->
                 <ControlTemplate TargetType="{x:Type Expander}">
-                    <Border BorderBrush="{StaticResource BorderDarkBrush}" BorderThickness="1,0,1,1"  Background="{TemplateBinding Background}" CornerRadius="0" SnapsToDevicePixels="true">
+                    <Border BorderBrush="{StaticResource BorderDarkBrush}" BorderThickness="1,0,1,0"  Background="{TemplateBinding Background}" CornerRadius="0" SnapsToDevicePixels="true">
                         <DockPanel>
                             <ToggleButton x:Name="HeaderSite"
                                           ContentTemplate="{TemplateBinding HeaderTemplate}" 
