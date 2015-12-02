@@ -60,6 +60,8 @@
                             <ComboBox x:Name="comboBox" Width="120" d:LayoutOverrides="Height" Canvas.Left="345" Canvas.Top="227"/>
                             <ListBox x:Name="listBox" Height="100" Width="100"/>
                             <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox" Width="120" Canvas.Left="187" Canvas.Top="42"/>
+
+                            <RepeatButton RenderTransformOrigin="2.933,2.391" Canvas.Left="32" Canvas.Top="25">></RepeatButton>
                             <!--<controlsv2:DropDownButtonWithMenu Content="BOB 2">
                                 <controlsv2:DropDownButtonWithMenu.ContextMenu>
                                     <ContextMenu>

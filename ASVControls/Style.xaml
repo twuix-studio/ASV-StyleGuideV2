@@ -136,7 +136,7 @@
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="HighlightGradientDarkBrush" StartPoint="0,0" EndPoint="0,1">
+    <LinearGradientBrush x:Key="HighlightExpanderHeaderBrush" StartPoint="0,0" EndPoint="0,1">
         <LinearGradientBrush.GradientStops>
             <GradientStopCollection>
                 <GradientStop Color="{StaticResource HighlightColorHover}" Offset="0" />
@@ -507,29 +507,27 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
     <ControlTemplate x:Key="{ComponentResourceKey ResourceId=SubmenuItemTemplateKey, TypeInTargetAssembly={x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
-        <Border>
-
-            <Grid SnapsToDevicePixels="true">
-                <Rectangle x:Name="Bg" Fill="{TemplateBinding Background}" />
-                <Rectangle x:Name="InnerBorder" Margin="0"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition MinWidth="14" SharedSizeGroup="MenuItemIconColumnGroup" Width="Auto"/>
-                        <ColumnDefinition Width="4"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition MinWidth="37"/>
-                        <ColumnDefinition SharedSizeGroup="MenuItemIGTColumnGroup" Width="Auto"/>
-                        <ColumnDefinition Width="17"/>
-                    </Grid.ColumnDefinitions>
-                    <ContentPresenter x:Name="Icon" 
+        <Grid SnapsToDevicePixels="true">
+            <Rectangle x:Name="Bg" Fill="{TemplateBinding Background}" />
+            <Rectangle x:Name="InnerBorder" Margin="0"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="14" SharedSizeGroup="MenuItemIconColumnGroup" Width="Auto"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition MinWidth="37"/>
+                    <ColumnDefinition SharedSizeGroup="MenuItemIGTColumnGroup" Width="Auto"/>
+                    <ColumnDefinition Width="17"/>
+                </Grid.ColumnDefinitions>
+                <ContentPresenter x:Name="Icon" 
                                       ContentSource="Icon" 
                                       Margin="1" 
                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                       VerticalAlignment="Center"/>
-                    <Border x:Name="GlyphPanel" 
+                <Border x:Name="GlyphPanel" 
                             BorderBrush="Transparent"
                             Margin="1" Visibility="Hidden">
-                        <Path x:Name="Glyph" 
+                    <Path x:Name="Glyph" 
                                 Data="{StaticResource Checkmark}" 
                                 Fill="{StaticResource ForegroundBrush}" 
                                 FlowDirection="LeftToRight"
@@ -538,18 +536,17 @@
                                 Height="7.5"
                                 Stretch="Fill" 
                                 Width="7.5"/>
-                    </Border>
-                    <ContentPresenter x:Name="Content"  Grid.Column="2" 
+                </Border>
+                <ContentPresenter x:Name="Content"  Grid.Column="2" 
                                       ContentSource="Header"
                                       Margin="{TemplateBinding Padding}"
                                       RecognizesAccessKey="True" 
                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                    <TextBlock Grid.Column="4" 
+                <TextBlock Grid.Column="4" 
                                Margin="{TemplateBinding Padding}"
                                Text="{TemplateBinding InputGestureText}"/>
-                </Grid>
             </Grid>
-        </Border>
+        </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="Icon" Value="{x:Null}">
                 <Setter Property="Visibility" TargetName="Icon" Value="Collapsed"/>
@@ -1591,10 +1588,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="true">
-                            <!-- ASV Specific -->
-                            <Setter Property="Fill" TargetName="rectangle" Value="{StaticResource HighlightGradientDarkBrush}" />
-                            <Setter Property="Fill" TargetName="arrow" Value="White" />
-                            <!--<Setter Property="Fill" TargetName="rectangle" Value="{StaticResource ExpanderHeaderBrush}" />-->
+                            <Setter Property="Fill" TargetName="rectangle" Value="{StaticResource ExpanderHeaderBrush}" />
                             <Setter Property="Stroke" TargetName="rectangle" Value="{StaticResource ExpanderHeaderBrush}" />
                             <Setter Property="Fill" TargetName="contentPresenter" Value="{StaticResource ExpanderHeaderBrush}" />
                             <Trigger.EnterActions>
@@ -1621,9 +1615,7 @@
                             </Trigger.ExitActions>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <!--<Setter Property="Fill" TargetName="arrow" Value="{StaticResource ActiveBrush}" />-->
-                            <!-- Specific ASV -->
-                            <Setter Property="Fill" TargetName="arrow" Value="{StaticResource ButtonBackgroundPressed}" />
+                            <Setter Property="Fill" TargetName="arrow" Value="{StaticResource ActiveBrush}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter Property="Fill" TargetName="arrow" Value="{StaticResource ActiveBrush}" />
@@ -1768,44 +1760,7 @@
     </Style>
 
 
-    <!--<Style x:Key="FeatureExpanderStyle" TargetType="{x:Type Expander}" BasedOn="{StaticResource {x:Type Expander}}">
-        <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
-        <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Padding" Value="0"/>
-        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-        <Setter Property="VerticalContentAlignment" Value="Stretch" />
-        <Setter Property="HeaderTemplate" >
-            <Setter.Value>
-                <DataTemplate>
-                    <Border Padding="0">
-                        <Grid Background="{StaticResource WindowBackgroundBrush}" SnapsToDevicePixels="False">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1"/>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="1"/>
-                            </Grid.RowDefinitions>
-                            <Rectangle x:Name="borderTop" Height="1" Fill="{StaticResource BackgroundLightBrush}" HorizontalAlignment="Stretch" Grid.Row="0" Grid.ColumnSpan="2"/>
-                            <Rectangle x:Name="rectangle" Width="30" Height="30" Grid.Row="1" Fill="{StaticResource WindowBackgroundBrush}" HorizontalAlignment="Center" StrokeThickness="0" Stroke="{StaticResource WindowBackgroundBrush}" VerticalAlignment="Center"/>
-                            <Path x:Name="arrow" Width="12" Height="7" Fill="{StaticResource GlyphBackgroundBrush}" Data="{StaticResource DownArrow}" Stretch="Fill" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,1,0,1" RenderTransformOrigin="0.5,0.5" >
-                                <Path.RenderTransform>
-                                    <RotateTransform Angle="0"/>
-                                </Path.RenderTransform>
-                            </Path>
-                            <Rectangle x:Name="contentPresenter" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{StaticResource WindowBackgroundBrush}"/>
-                            <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="4,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center" TextElement.FontFamily="Segoe UI Light" TextElement.FontSize="16" TextElement.FontWeight="Light" />
-                            <Rectangle x:Name="borderBottom" Height="1" Fill="{StaticResource BackgroundDarkBrush}" HorizontalAlignment="Stretch" Grid.Row="2" Grid.ColumnSpan="2"/>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>-->
 
     <!-- TabControl -->
     <Style TargetType="{x:Type TabControl}">
@@ -1879,14 +1834,20 @@
                                         BorderBrush="{StaticResource WindowBackgroundBrush}"
                                         BorderThickness="0"
                                         Background="{TemplateBinding Background}"
-                                        Padding="{TemplateBinding Padding}"
-                                            Margin="0,3,0,0">
+                                        Padding="{TemplateBinding Padding}" Margin="0,3,0,0">
 
                                         <ContentPresenter x:Name="Content" Margin="6,1,6,1" ContentSource="Header"
                                             HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
                                             RecognizesAccessKey="True" TextElement.FontFamily="Segoe UI SemiBold" 
                                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                            VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+                                            VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}">
+                                            <ContentPresenter.Resources>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="FontFamily" Value="Segoe UI Light"/>
+                                                    <Setter Property="FontSize" Value="15"/>
+                                                </Style>
+                                            </ContentPresenter.Resources>
+                                        </ContentPresenter>
                                     </Border>
 
                                 </Grid>
@@ -2730,7 +2691,7 @@
     <!-- FlowToggleButtonStyle -->
     <Style x:Key="FlowToggleButtonStyle" TargetType="{x:Type ToggleButton}"  BasedOn="{StaticResource {x:Type ButtonBase}}" >
         <Setter Property="FontSize" Value="16" />
-        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontFamily" Value="Segoe UI Semibold" />
         <Setter Property="Foreground" Value="{StaticResource ForegroundDisableBrush}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Template">
@@ -2935,41 +2896,42 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border TextBlock.Foreground="{StaticResource ForegroundBrush}" 
-                            x:Name="ButtonBorder" CornerRadius="46"
-                            Background="{StaticResource ButtonBackground}" BorderBrush="{StaticResource BackgroundDarkBrush}"
-                            BorderThickness="1">
-                        <ContentControl x:Name="Content" Margin="0,-34,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                            <TextBlock Text="+" FontFamily="Segoe UI Light" FontSize="100"  />
-                        </ContentControl>
+                    <Border TextBlock.Foreground="{StaticResource ForegroundBrush}" x:Name="ButtonBorder"
+                        CornerRadius="46" Background="{StaticResource ButtonBackground}"
+                        BorderBrush="{StaticResource BackgroundDarkBrush}" BorderThickness="1">
+                        <ContentPresenter Margin="0,-34,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                            TextElement.FontFamily="Segoe UI Light" TextElement.FontSize="100" Content="+"
+                            RecognizesAccessKey="True" />
                     </Border>
-
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="false">
+                        <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
                             <Setter Property="Opacity" Value="0.7" />
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource ButtonBackgroundMouseOver}" />
-                            <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{StaticResource ButtonBorderHighlighted}" />
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background"
+                                Value="{StaticResource ButtonBackgroundMouseOver}" />
+                            <Setter TargetName="ButtonBorder" Property="BorderBrush"
+                                Value="{StaticResource ButtonBorderHighlighted}" />
                         </Trigger>
-                        <Trigger Property="IsPressed" Value="true">
-                            <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource ButtonBackgroundPressed}" />
-                            <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{StaticResource ButtonBorderHighlighted}" />
-                            <Setter TargetName="Content" Property="TextElement.Foreground" Value="{StaticResource ButtonBackgroundMouseOver}" />
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background"
+                                Value="{StaticResource ButtonBackgroundPressed}" />
+                            <Setter TargetName="ButtonBorder" Property="BorderBrush"
+                                Value="{StaticResource ButtonBorderHighlighted}" />
                         </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsMouseOver" Value="true" />
-                            </MultiTrigger.Conditions>
-
-                            <Setter TargetName="ButtonBorder" Property="Background" Value="{StaticResource ButtonBackgroundCheckedMouseOver}" />
-                            <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="{StaticResource ButtonBorderHighlighted}" />
-                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    
+    <Style x:Key="ActiveExpanderSeparator" TargetType="Separator" >
+        <Setter Property="Visibility" Value="Collapsed" />
+    </Style>
+
+    <Style TargetType="RepeatButton" BasedOn="{StaticResource {x:Type ButtonBase}}"  >
+        <!-- To redefine -->
     </Style>
 
 </ResourceDictionary>
