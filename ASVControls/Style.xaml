@@ -2458,17 +2458,30 @@
         </Setter>
     </Style>
 
+    <!--<Border Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="Transparent"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}"
+                            SnapsToDevicePixels="true">
+        <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+    </Border>-->
+
+
     <Style TargetType="{x:Type ListViewItem}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-
-        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
+        <Setter Property="BorderBrush" Value="{StaticResource BackgroundDarkBrush}"/>
+        <Setter Property="Padding" Value="5,1" />
+        <!--<Setter Property="BorderBrush" Value="Transparent"/>-->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
                     <Border Name="Bd"
                             Background="{TemplateBinding Background}"
-                            BorderBrush="Transparent"
+                            BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Padding="{TemplateBinding Padding}"
                             SnapsToDevicePixels="true">
@@ -2477,7 +2490,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="true">
-                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource ActiveBrush}"/>
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource HighlightExpanderHeaderBrush}"/>
                             <Setter Property="Foreground" Value="{StaticResource BackgroundDarkBrush}"/>
                         </Trigger>
                         <MultiTrigger>
@@ -2485,7 +2498,7 @@
                                 <Condition Property="IsSelected" Value="true"/>
                                 <Condition Property="Selector.IsSelectionActive" Value="false"/>
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource ActiveBrush}"/>
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource HighlightExpanderHeaderBrush}"/>
                             <Setter Property="Foreground"  Value="{StaticResource ForegroundBrush}"/>
                         </MultiTrigger>
                         <Trigger Property="IsEnabled" Value="false">
@@ -2939,7 +2952,41 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+
+    <Style x:Key="ListViewButton" TargetType="Button" BasedOn="{StaticResource {x:Type ButtonBase}}" >
+        <!--<Setter Property="Width" Value="92" />
+        <Setter Property="Height" Value="92" />-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border TextBlock.Foreground="{StaticResource ForegroundBrush}" x:Name="ButtonBorder"
+                        CornerRadius="2" Background="Transparent"
+                        BorderBrush="{StaticResource BackgroundDarkBrush}" BorderThickness="0">
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
+                            <Setter Property="Opacity" Value="0.7" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background"
+                                Value="{StaticResource ButtonBackgroundMouseOver}" />
+                            <Setter TargetName="ButtonBorder" Property="BorderBrush"
+                                Value="{StaticResource ButtonBorderHighlighted}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background"
+                                Value="{StaticResource ButtonBackgroundPressed}" />
+                            <Setter TargetName="ButtonBorder" Property="BorderBrush"
+                                Value="{StaticResource ButtonBorderHighlighted}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="ActiveExpanderSeparator" TargetType="Separator" >
         <Setter Property="Visibility" Value="Visible" />
         <Setter Property="Height" Value="NaN" />
