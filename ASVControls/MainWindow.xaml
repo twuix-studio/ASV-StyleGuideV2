@@ -88,12 +88,13 @@
                 </TabItem>
             </TabControl>
             <StackPanel Width="500" Margin="0,0,0,1" Background="{DynamicResource CornerBorder}" >
-                <ListView x:Name="listView" Height="100">
+                <ListView x:Name="listView" >
                     <ListViewItem Content="Other Item" Margin="0"/>
                     <ListViewItem Content="ListViewItem" Margin="0"/>
                 </ListView>
                 <Expander x:Name="FeatureExpander" Header="EXPANDER" IsExpanded="True" Style="{StaticResource FeatureExpanderStyle}">
-                    <Grid Margin="5" Width="490">
+                    <StackPanel Orientation="Vertical">
+                    <Grid Width="490" HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.33*" />
                             <ColumnDefinition Width="0.33*"/>
@@ -198,7 +199,13 @@
                         <CheckBox Content="Disabled Switch" Grid.Column="2" Grid.Row="13" IsEnabled="False" Style="{StaticResource SwitchCheckBox}" />
 
 
-                    </Grid>
+                        </Grid>
+
+                        <Separator HorizontalAlignment="Stretch"/>
+                        
+                        <TextBlock Text="Separated content" Height="50" HorizontalAlignment="Center" />
+                        
+                    </StackPanel>
                 </Expander>
                 <Expander x:Name="FeatureExpander1" Header="IMAGE" IsExpanded="True" Background="{StaticResource WindowBackgroundBrush}" >
                     <TabControl x:Name="tabControl" VerticalAlignment="Top" TabStripPlacement="Left">

@@ -31,7 +31,14 @@
                                 </Path.RenderTransform>
                             </Path>
                             <Rectangle x:Name="contentPresenter" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{StaticResource WindowBackgroundBrush}"/>
-                            <ContentPresenter Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="10,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center" TextElement.FontFamily="Segoe UI Light" TextElement.FontSize="16" TextElement.FontWeight="Light" />
+                            <ContentPresenter Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="10,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center" TextElement.FontFamily="Segoe UI Light" TextElement.FontSize="16" TextElement.FontWeight="Light" >
+                                <ContentPresenter.Resources>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+                                        <Setter Property="FontSize" Value="16" />
+                                    </Style>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
                             <Rectangle x:Name="borderBottom" Height="1" Fill="{StaticResource BackgroundDarkBrush}" HorizontalAlignment="Stretch" Grid.Row="2" Grid.ColumnSpan="2"/>
                         </Grid>
                     </Border>
@@ -110,14 +117,8 @@
                                           Padding="{TemplateBinding Padding}" 
                                           Style="{StaticResource FeatureExpanderDownHeaderStyle}" 
                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            <Grid 
-                            x:Name="ExpandSiteContainer" 
-                            Visibility="Visible" 
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                            Margin="{TemplateBinding Padding}" 
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-                            DockPanel.Dock="Bottom"                                       
-                            >
+                            <Grid x:Name="ExpandSiteContainer" Visibility="Visible" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" DockPanel.Dock="Bottom" >
                                 <Grid.Height>
                                     <MultiBinding Converter="{StaticResource multiplyConverter}">
                                         <Binding Path="ActualHeight" ElementName="ExpandSite"/>
@@ -127,21 +128,13 @@
                                 <Grid.Tag>
                                     <system:Double>0.0</system:Double>
                                 </Grid.Tag>
-                                <ScrollViewer 
-                                VerticalScrollBarVisibility="Hidden" 
-                                HorizontalScrollBarVisibility="Hidden" 
-                                 
-                                >
-                                    <ContentPresenter x:Name="ExpandSite" 
-                                              DockPanel.Dock="Bottom" 
-                                              Focusable="false" 
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                              Margin="{TemplateBinding Padding}" 
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" >
+                                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" >
+                                    <ContentPresenter x:Name="ExpandSite" DockPanel.Dock="Bottom" Focusable="false" Margin="0,5"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" >
                                     </ContentPresenter>
                                 </ScrollViewer>
                             </Grid>
-
                         </DockPanel>
                     </Border>
                     <ControlTemplate.Triggers>
