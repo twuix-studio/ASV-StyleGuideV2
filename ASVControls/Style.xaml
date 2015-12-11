@@ -3020,7 +3020,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Separator">
-                    <Border Height="NaN" BorderThickness="2" BorderBrush="{StaticResource ButtonBorderHighlighted}" Width="2"/>
+                    <Border Height="NaN" BorderThickness="2" BorderBrush="{StaticResource ActiveBrush}" Width="2"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
