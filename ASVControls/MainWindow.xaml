@@ -95,9 +95,9 @@
                 <Expander x:Name="FeatureExpander" Header="EXPANDER" IsExpanded="True" Style="{StaticResource FeatureExpanderStyle}">
                     <Grid Margin="5" Width="490">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.4*" />
-                            <ColumnDefinition Width="0.3*"/>
-                            <ColumnDefinition Width="0.3*" />
+                            <ColumnDefinition Width="0.33*" />
+                            <ColumnDefinition Width="0.33*"/>
+                            <ColumnDefinition Width="0.33*" />
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
@@ -161,7 +161,7 @@
                         <!--Row 06: RadioButton component-->
                         <Label x:Name="Label_RadioButton_06" Grid.Column="0" Grid.Row="6" HorizontalContentAlignment="Right" Content="Radio-button"/>
                         <RadioButton x:Name="RadioButton_060" Content="RadioButton" Grid.Column="1" Grid.Row="6" />
-                        <RadioButton x:Name="RadioButton_061" Content="RadioButton" Grid.Column="2" Grid.Row="6" IsEnabled="False" />
+                        <RadioButton x:Name="RadioButton_061" Content="RadioButton" Grid.Column="2" Grid.Row="6" IsEnabled="False" GroupName="Disable" />
 
                         <!--Row 07: ProgressBar component-->
                         <Label x:Name="Label_ProgressBar_07" HorizontalContentAlignment="Right" Grid.Column="0" Grid.Row="7" Content="Progress-bar" />
@@ -180,7 +180,7 @@
                         <!--Row 10:-->
                         <Label x:Name="Label_RadioButton_10" Grid.Column="0" Grid.Row="10" HorizontalContentAlignment="Right" Content="Radio-button"/>
                         <RadioButton x:Name="RadioButton_100" Content="RadioButton" Grid.Column="1" Grid.Row="10" />
-                        <RadioButton x:Name="RadioButton_101" Content="RadioButton" Grid.Column="2" Grid.Row="10" />
+                        <RadioButton x:Name="RadioButton_101" Content="RadioButton" Grid.Column="2" Grid.Row="10" IsChecked="True" IsEnabled="False" GroupName="Disable" />
 
                         <!--Row 11:-->
                         <Label x:Name="Label_ToggleButton_11"  Grid.Column="0" Grid.Row="11" HorizontalContentAlignment="Right" Content="Toggle-button" />

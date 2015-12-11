@@ -1731,7 +1731,7 @@
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName ="ExpandSiteContainer" Storyboard.TargetProperty ="Tag" To="1.0" Duration ="0:0:0.25" >
+                                        <DoubleAnimation Storyboard.TargetName ="ExpandSiteContainer" Storyboard.TargetProperty ="Tag" To="1.0" Duration ="0:0:0.4" >
                                             <DoubleAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseInOut"/>
                                             </DoubleAnimation.EasingFunction>
@@ -1742,7 +1742,7 @@
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName ="ExpandSiteContainer" Storyboard.TargetProperty ="Tag" To="0" Duration ="0:0:0.25" >
+                                        <DoubleAnimation Storyboard.TargetName ="ExpandSiteContainer" Storyboard.TargetProperty ="Tag" To="0" Duration ="0:0:0.4" >
                                             <DoubleAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseInOut"/>
                                             </DoubleAnimation.EasingFunction>
