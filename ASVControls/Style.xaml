@@ -9,7 +9,6 @@
                     xmlns:types="clr-namespace:Fei.Common.Types;assembly=Fei.Common.Types"
                     xmlns:converters="clr-namespace:Fei.SliceAndView.Common.Converters;assembly=Fei.SliceAndView.Common"
                     xmlns:validation="clr-namespace:Fei.SliceAndView.Common.Validation;assembly=Fei.SliceAndView.Common"
-                    xmlns:local="clr-namespace:ASVControls"
                     mc:Ignorable="d" >
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -17,10 +16,10 @@
     <converters:ScanResolutionToStringConverter x:Key="ScanResolutionToStringConverter"/>
     <converters:PhysicalValueConverter x:Key="HighVoltageValueConverter" Precision="10" DefaultUnit="{x:Static types:Unit.Volt}"/>
     <converters:PhysicalValueConverter x:Key="BeamCurrentValueConverter" NumberOfDigits="2" DefaultUnit="{x:Static types:Unit.Ampere}"/>
-
     <converters:EnumToStringConverter x:Key="EnumToStringConverter" />
-
-    <local:MultiplyConverter x:Key="multiplyConverter" />
+    <converters:BoolToObjectConverter TrueValue="Visible" FalseValue="Collapsed" x:Key="BoolToVisibilityConverter"/>
+    <converters:BoolToObjectConverter TrueValue="Collapsed" FalseValue="Visible" x:Key="BoolToInvisibilityConverter"/>
+    <converters:MultiplyConverter x:Key="multiplyConverter" />
 
     <!-- Constants -->
     <system:Double x:Key="FontSize">13</system:Double>
@@ -165,6 +164,15 @@
             </GradientStopCollection>
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="PanelHeaderBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#52646f" />
+            <GradientStop Color="#455560" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="PanelHeaderSeparatorLightLineBrush" Color="#677c89" />
 
     <!-- Basic style redefinition -->
     <!-- Window -->
@@ -3142,9 +3150,148 @@
         <!-- To redefine -->
     </Style>
 
+    <Style TargetType="Border" x:Key="TrackBorderStyle">
+        <Setter Property="BorderBrush" Value="#666"/>
+        <Setter Property="BorderThickness" Value="0,1,0,1"></Setter>
+    </Style>
 
+    <Style TargetType="ItemsControl" x:Key="PreviewsControlStyle">
+        <Setter Property="Margin" Value="0,1,0,1"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+    </Style>
+
+    <Style TargetType="controls:PreviewsSlider" x:Key="SliderStyle">
+        <Setter Property="IsMoveToPointEnabled" Value="True"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="IsSnapToTickEnabled" Value="True"/>
+        <Setter Property="TickFrequency" Value="1"/>
+        <Setter Property="SmallChange" Value="1"/>
+        <Setter Property="Minimum" Value="1"/>
+        <Setter Property="Maximum" Value="{Binding DesiredCount, RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:PreviewsSlider">
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ItemsControl Name="PART_Previews" Grid.Column="0" Style="{StaticResource PreviewsControlStyle}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding}" Stretch="None"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <Border Grid.Column="0" Style="{StaticResource TrackBorderStyle}">
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Grid.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="FontWeight" Value="SemiBold"/>
+                                        <Setter Property="Effect">
+                                            <Setter.Value>
+                                                <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="8" Color="Black"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                    <Style TargetType="controls:CircularProgressBar">
+                                        <Setter Property="Effect">
+                                            <Setter.Value>
+                                                <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="8" Color="Black"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Grid.Resources>
+                                <StackPanel Orientation="Horizontal" 
+                                                HorizontalAlignment="Center" 
+                                                VerticalAlignment="Center" 
+                                                Visibility="{Binding IsLoadingPreviews, Converter={StaticResource BoolToInvisibilityConverter}}">
+                                    <TextBlock Text="{Binding Value, Mode=OneWay}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" 
+                                                HorizontalAlignment="Center" 
+                                                VerticalAlignment="Center" 
+                                                Visibility="{Binding IsLoadingPreviews, Converter={StaticResource BoolToVisibilityConverter}}">
+                                    <controls:CircularProgressBar Width="24" Height="24" DotsCount="8" DotSize="4" Margin="0,0,5,0" DotBrush="White"/>
+                                    <TextBlock Text="Loading images, please wait..." VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <Track x:Name="PART_Track" Grid.Column="0" IsDirectionReversed="False">
+                            <Track.Thumb>
+                                <Thumb >
+                                </Thumb>
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:ImageWithPreview" x:Key="DetailImageStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:ImageWithPreview">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        Visibility="{TemplateBinding IsLoadingDetail, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <controls:CircularProgressBar DotSize="8" DotsCount="10" Width="64" Height="64"/>
+                            <TextBlock Margin="10,0,0,0" Text="Loading..." VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <Image Stretch="Uniform" Name="PART_Image" SnapsToDevicePixels="True"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <Style TargetType="Separator">
         <Setter Property="Height" Value="1" />
         <Setter Property="Background"  Value="{StaticResource ButtonBorder}" />
     </Style>
+
+    <Style TargetType="ContentControl" x:Key="PanelHeaderStyle">
+        <Setter Property="Height" Value="38" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContentControl}">
+                    <DockPanel>
+                        <Rectangle Fill="{StaticResource PanelHeaderSeparatorLightLineBrush}" Height="1" DockPanel.Dock="Bottom" />
+                        <Rectangle Fill="{StaticResource BackgroundDarkBrush}" Height="1" DockPanel.Dock="Bottom" />
+                        <Border Background="{StaticResource PanelHeaderBackgroundBrush}">
+                            <ContentPresenter Margin="0,3,0,0" Content="{TemplateBinding Content}" VerticalAlignment="Center" />
+                        </Border>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Image" x:Key="PanelHeaderImageStyle">
+        <Setter Property="Width" Value="24" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Stretch" Value="Fill" />
+        <Setter Property="Margin" Value="7,0,3,0" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="PanelHeaderTextStyle" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="FontFamily" Value="Segoe UI Semilight" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Margin" Value="10,0,0,0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Margin" Value="7,0,3,0" />
+    </Style>
+
 </ResourceDictionary>

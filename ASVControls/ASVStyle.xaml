@@ -2,9 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:is="http://schemas.microsoft.com/expression/2010/interactions"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:converters="clr-namespace:Fei.SliceAndView.Common.Converters;assembly=Fei.SliceAndView.Common"
                     xmlns:local="clr-namespace:ASVControls">
 
-    <local:MultiplyConverter x:Key="multiplyConverter" />
+    <converters:MultiplyConverter x:Key="multiplyConverter" />
 
     <!-- ExpanderDownHeaderStyle -->
     <Style x:Key="FeatureExpanderDownHeaderStyle" TargetType="{x:Type ToggleButton}">
