@@ -108,6 +108,7 @@
     <Compile Include="Converters\EnumToStringConverter.cs" />
     <Compile Include="Converters\ErrorCollectionToBoolConverter.cs" />
     <Compile Include="Converters\MultiBoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\MultiplyConverter.cs" />
     <Compile Include="Converters\NotNullToBoolConverter.cs" />
     <Compile Include="Converters\NumberComparisonToObjectConverter.cs" />
     <Compile Include="Converters\ObjectNotNullToVisibilityConverter.cs" />

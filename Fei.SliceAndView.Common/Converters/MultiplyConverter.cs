@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Data;
 
-namespace ASVControls
+namespace Fei.SliceAndView.Common.Converters
 {
     public class MultiplyConverter : IMultiValueConverter
     {
