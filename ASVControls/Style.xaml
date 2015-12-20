@@ -167,8 +167,8 @@
     
     <LinearGradientBrush x:Key="PanelHeaderBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
         <LinearGradientBrush.GradientStops>
-            <GradientStop Color="#52646f" />
-            <GradientStop Color="#455560" />
+            <GradientStop Color="{StaticResource LightBackgroundColor}" Offset="0" />
+            <GradientStop Color="{StaticResource DisabledBackgroundColor}" Offset="1" />
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
 
