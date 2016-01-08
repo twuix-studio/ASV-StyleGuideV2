@@ -1695,9 +1695,87 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="FeatureExpanderDownHeaderStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}" >
+                    <Border Padding="0">
+                        <Grid Background="{StaticResource WindowBackgroundBrush}" SnapsToDevicePixels="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-    <!-- Expander -->
-    <Style TargetType="{x:Type Expander}" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="1"/>
+                            </Grid.RowDefinitions>
+                            <Rectangle x:Name="borderTop" Height="1" Fill="{StaticResource BackgroundLightBrush}" HorizontalAlignment="Stretch" Grid.Row="0" Grid.ColumnSpan="2"/>
+                            <Rectangle x:Name="rectangle" Width="30" Height="30" Grid.Row="1" Fill="{StaticResource WindowBackgroundBrush}" HorizontalAlignment="Center" StrokeThickness="0" Stroke="{StaticResource WindowBackgroundBrush}" VerticalAlignment="Center"/>
+                            <Path x:Name="arrow" Width="12" Height="7" Fill="{StaticResource GlyphBackgroundBrush}" Data="{StaticResource DownArrow}" Stretch="Fill" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,1,0,1" RenderTransformOrigin="0.5,0.5" >
+                                <Path.RenderTransform>
+                                    <RotateTransform Angle="0"/>
+                                </Path.RenderTransform>
+                            </Path>
+                            <Rectangle x:Name="contentPresenter" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="{StaticResource WindowBackgroundBrush}"/>
+                            <ContentPresenter Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="10,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center" TextElement.FontFamily="Segoe UI Light" TextElement.FontSize="16" TextElement.FontWeight="Light" >
+                                <ContentPresenter.Resources>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+                                        <Setter Property="FontSize" Value="16" />
+                                    </Style>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
+                            <Rectangle x:Name="borderBottom" Height="1" Fill="{StaticResource BackgroundDarkBrush}" HorizontalAlignment="Stretch" Grid.Row="2" Grid.ColumnSpan="2"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="true">
+                            <!-- ASV Specific -->
+                            <Setter Property="Fill" TargetName="rectangle" Value="{StaticResource HighlightExpanderHeaderBrush}" />
+                            <Setter Property="Fill" TargetName="arrow" Value="White" />
+                            <!--<Setter Property="Fill" TargetName="rectangle" Value="{StaticResource ExpanderHeaderBrush}" />-->
+                            <Setter Property="Stroke" TargetName="rectangle" Value="{StaticResource ExpanderHeaderBrush}" />
+                            <Setter Property="Fill" TargetName="contentPresenter" Value="{StaticResource ExpanderHeaderBrush}" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="arrow" Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)" To="180" Duration="0:0:0.4">
+                                            <DoubleAnimation.EasingFunction >
+                                                <CubicEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="arrow" Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)" To="0" Duration="0:0:0.4">
+                                            <DoubleAnimation.EasingFunction >
+                                                <CubicEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <!--<Setter Property="Fill" TargetName="arrow" Value="{StaticResource ActiveBrush}" />-->
+                            <!-- Specific ASV -->
+                            <Setter Property="Fill" TargetName="arrow" Value="{StaticResource ButtonBackgroundPressed}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Fill" TargetName="arrow" Value="{StaticResource ActiveBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource {x:Type Expander}}">
         <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}" />
         <Setter Property="BorderThickness" Value="0" />
@@ -1709,12 +1787,23 @@
                 <ControlTemplate TargetType="{x:Type Expander}">
                     <Border BorderBrush="{StaticResource BorderDarkBrush}" BorderThickness="1,0,1,0"  Background="{TemplateBinding Background}" CornerRadius="0" SnapsToDevicePixels="true">
                         <DockPanel>
-                            <ToggleButton x:Name="HeaderSite" ContentTemplate="{TemplateBinding HeaderTemplate}" 
-                                          ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}" Content="{TemplateBinding Header}" 
-                                          DockPanel.Dock="Top" Foreground="{TemplateBinding Foreground}" FontStretch="{TemplateBinding FontStretch}" 
-                                          FontFamily="Segoe UI Light" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                          IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"  Margin="0" 
-                                          MinWidth="0" MinHeight="0" Padding="{TemplateBinding Padding}" Style="{StaticResource ExpanderDownHeaderStyle}"  
+                            <ToggleButton x:Name="HeaderSite"
+                                          ContentTemplate="{TemplateBinding HeaderTemplate}" 
+                                          ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}" 
+                                          Content="{TemplateBinding Header}" 
+                                          DockPanel.Dock="Top" 
+                                          Foreground="{TemplateBinding Foreground}" 
+                                          FontWeight="{TemplateBinding FontWeight}" 
+                                          FontStyle="{TemplateBinding FontStyle}" 
+                                          FontStretch="{TemplateBinding FontStretch}" 
+                                          FontFamily="{TemplateBinding FontFamily}" 
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                          IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" 
+                                          Margin="0" 
+                                          MinWidth="0" 
+                                          MinHeight="0" 
+                                          Padding="{TemplateBinding Padding}" 
+                                          Style="{StaticResource FeatureExpanderDownHeaderStyle}" 
                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             <Grid x:Name="ExpandSiteContainer" Visibility="Visible" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                   Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" DockPanel.Dock="Bottom" >
