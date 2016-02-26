@@ -65,17 +65,16 @@
                             <ListBox x:Name="listBox" Height="100" Width="100"/>
                             <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox" Width="120" Canvas.Left="187" Canvas.Top="42"/>
 
-                            <RepeatButton RenderTransformOrigin="2.933,2.391" Canvas.Left="32" Canvas.Top="25">></RepeatButton>
                             <Label x:Name="label" Content="Label" Canvas.Left="465" Canvas.Top="145"/>
                             <Label x:Name="label1" Content="Label" Canvas.Left="368" Canvas.Top="172" IsEnabled="False"/>
-                            <!--<controlsv2:DropDownButtonWithMenu Content="BOB 2">
-                                <controlsv2:DropDownButtonWithMenu.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Header="Menu item 1" />
-                                        <MenuItem Header="Menu item 2" />
-                                    </ContextMenu>
-                                </controlsv2:DropDownButtonWithMenu.ContextMenu>
-                            </controlsv2:DropDownButtonWithMenu>-->
+
+                            <ToggleButton Style="{StaticResource CircularRefreshButton}" Canvas.Left="500" Canvas.Top="30">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="5 s" FontSize="18" HorizontalAlignment="Center" />
+                                    <TextBlock Text="REFRESH" FontSize="11" HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </ToggleButton>
+                            <Button Content="x" Style="{StaticResource CircularCloseButton}" Canvas.Left="30" Canvas.Top="30" />
                         </Canvas>
                     </ScrollViewer>
                 </TabItem>
@@ -94,117 +93,117 @@
                 </ListView>
                 <Expander x:Name="FeatureExpander" Header="EXPANDER" IsExpanded="True" Style="{StaticResource FeatureExpanderStyle}">
                     <StackPanel Orientation="Vertical">
-                    <Grid Width="490" HorizontalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.33*" />
-                            <ColumnDefinition Width="0.33*"/>
-                            <ColumnDefinition Width="0.33*" />
-                        </Grid.ColumnDefinitions>
+                        <Grid Width="490" HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.33*" />
+                                <ColumnDefinition Width="0.33*"/>
+                                <ColumnDefinition Width="0.33*" />
+                            </Grid.ColumnDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="26"/>
-                            <RowDefinition Height="26"/>
-                            <RowDefinition Height="26"/>
-                            <RowDefinition Height="26"/>
-                            <RowDefinition Height="26"/>
-                            <RowDefinition Height="26"/>
-                            <RowDefinition Height="26"/>
-                            <RowDefinition Height="26"/>
-                            <RowDefinition Height="26"/>
-                            <RowDefinition Height="26"/>
-                            <RowDefinition Height="26"/>
-                            <RowDefinition Height="26"/>
-                            <RowDefinition Height="26"/>
-                            <RowDefinition Height="26"/>
-                        </Grid.RowDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="26"/>
+                                <RowDefinition Height="26"/>
+                                <RowDefinition Height="26"/>
+                                <RowDefinition Height="26"/>
+                                <RowDefinition Height="26"/>
+                                <RowDefinition Height="26"/>
+                                <RowDefinition Height="26"/>
+                                <RowDefinition Height="26"/>
+                                <RowDefinition Height="26"/>
+                                <RowDefinition Height="26"/>
+                                <RowDefinition Height="26"/>
+                                <RowDefinition Height="26"/>
+                                <RowDefinition Height="26"/>
+                                <RowDefinition Height="26"/>
+                            </Grid.RowDefinitions>
 
-                        <!--Row 00: Text&Button component-->
-                        <Label x:Name="Label_TextAndButton" Content="Text &amp; button" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right" />
-                        <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Orientation="Horizontal">
-                            <TextBox x:Name="TextBox_00" Height="26" Style="{DynamicResource TextBoxNextToButtonStyle}" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"  Width="150" RenderTransformOrigin="0.5,0.5"/>
-                            <Button x:Name="Button_00"  Style="{DynamicResource ButtonNextToTextboxStyle}" Content="Button" HorizontalAlignment="Right" VerticalAlignment="Top" Width="87" Height="26"/>
-                        </StackPanel>
+                            <!--Row 00: Text&Button component-->
+                            <Label x:Name="Label_TextAndButton" Content="Text &amp; button" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right" />
+                            <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Orientation="Horizontal">
+                                <TextBox x:Name="TextBox_00" Height="26" Style="{DynamicResource TextBoxNextToButtonStyle}" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"  Width="150" RenderTransformOrigin="0.5,0.5"/>
+                                <Button x:Name="Button_00"  Style="{DynamicResource ButtonNextToTextboxStyle}" Content="Button" HorizontalAlignment="Right" VerticalAlignment="Top" Width="87" Height="26"/>
+                            </StackPanel>
 
-                        <!--Row 01: ComboBox component-->
-                        <Label x:Name="Label_ComboBox_01" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right" Content="Combo-box" />
-                        <ComboBox Text="ComboBox_01" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Height="Auto" >
-                            <ComboBoxItem Padding="2" Content="Visible" IsSelected="True" />
-                            <ComboBoxItem Padding="2" Content="Hidden"/>
-                            <ComboBoxItem Padding="2" Content="Disabled" IsEnabled="False"/>
-                        </ComboBox>
+                            <!--Row 01: ComboBox component-->
+                            <Label x:Name="Label_ComboBox_01" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right" Content="Combo-box" />
+                            <ComboBox Text="ComboBox_01" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Height="Auto" >
+                                <ComboBoxItem Padding="2" Content="Visible" IsSelected="True" />
+                                <ComboBoxItem Padding="2" Content="Hidden"/>
+                                <ComboBoxItem Padding="2" Content="Disabled" IsEnabled="False"/>
+                            </ComboBox>
 
-                        <!--Row 02: ComboBox component-->
-                        <Label x:Name="Label_ComboBox_02" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right" Content="Numeric Combo-box"/>
-                        <ComboBox x:Name="ComboBox_02"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Style="{DynamicResource NumericComboBox}" >
-                            <ComboBoxItem Padding="2" Content="1.2" />
-                            <ComboBoxItem Padding="2" Content="1.3"/>
-                            <ComboBoxItem Padding="2" Content="4.5"/>
-                        </ComboBox>
+                            <!--Row 02: ComboBox component-->
+                            <Label x:Name="Label_ComboBox_02" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right" Content="Numeric Combo-box"/>
+                            <ComboBox x:Name="ComboBox_02"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Style="{DynamicResource NumericComboBox}" >
+                                <ComboBoxItem Padding="2" Content="1.2" />
+                                <ComboBoxItem Padding="2" Content="1.3"/>
+                                <ComboBoxItem Padding="2" Content="4.5"/>
+                            </ComboBox>
 
-                        <!--Row 03: ComboBox component-->
-                        <Label x:Name="Label_ComboBox_03" Grid.Column="0" Grid.Row="3" HorizontalContentAlignment="Right" Content="Disabled Combo-box" />
-                        <ComboBox x:Name="ComboBox_03" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" IsEnabled="False" IsSynchronizedWithCurrentItem="True">
-                            <ComboBoxItem Content="Disabled" IsSelected="True"/>
-                        </ComboBox>
+                            <!--Row 03: ComboBox component-->
+                            <Label x:Name="Label_ComboBox_03" Grid.Column="0" Grid.Row="3" HorizontalContentAlignment="Right" Content="Disabled Combo-box" />
+                            <ComboBox x:Name="ComboBox_03" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" IsEnabled="False" IsSynchronizedWithCurrentItem="True">
+                                <ComboBoxItem Content="Disabled" IsSelected="True"/>
+                            </ComboBox>
 
-                        <!--Row 04: ComboBox component-->
-                        <Label x:Name="Label_ComboBox_04" Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Right" Content="Resolution Combo-box"/>
-                        <ComboBox x:Name="ComboBox_04"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" Style="{DynamicResource ResolutionComboBox}" Height="Auto" >
-                            <ComboBoxItem Padding="2" Content="3x4" />
-                            <ComboBoxItem Padding="2" Content="10x15"/>
-                        </ComboBox>
+                            <!--Row 04: ComboBox component-->
+                            <Label x:Name="Label_ComboBox_04" Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Right" Content="Resolution Combo-box"/>
+                            <ComboBox x:Name="ComboBox_04"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" Style="{DynamicResource ResolutionComboBox}" Height="Auto" >
+                                <ComboBoxItem Padding="2" Content="3x4" />
+                                <ComboBoxItem Padding="2" Content="10x15"/>
+                            </ComboBox>
 
-                        <!--Row 05: CheckBox component-->
-                        <Label x:Name="Label_CheckBox_05" Grid.Column="0" Grid.Row="5" HorizontalContentAlignment="Right" Content="Check-box"/>
-                        <CheckBox x:Name="CheckBox_050" Content="CheckBox" Grid.Column="1" Grid.Row="5" />
-                        <CheckBox x:Name="CheckBox_051" Content="CheckBox" Grid.Column="2" Grid.Row="5" IsEnabled="False" />
+                            <!--Row 05: CheckBox component-->
+                            <Label x:Name="Label_CheckBox_05" Grid.Column="0" Grid.Row="5" HorizontalContentAlignment="Right" Content="Check-box"/>
+                            <CheckBox x:Name="CheckBox_050" Content="CheckBox" Grid.Column="1" Grid.Row="5" />
+                            <CheckBox x:Name="CheckBox_051" Content="CheckBox" Grid.Column="2" Grid.Row="5" IsEnabled="False" />
 
-                        <!--Row 06: RadioButton component-->
-                        <Label x:Name="Label_RadioButton_06" Grid.Column="0" Grid.Row="6" HorizontalContentAlignment="Right" Content="Radio-button"/>
-                        <RadioButton x:Name="RadioButton_060" Content="RadioButton" Grid.Column="1" Grid.Row="6" />
-                        <RadioButton x:Name="RadioButton_061" Content="RadioButton" Grid.Column="2" Grid.Row="6" IsEnabled="False" GroupName="Disable" />
+                            <!--Row 06: RadioButton component-->
+                            <Label x:Name="Label_RadioButton_06" Grid.Column="0" Grid.Row="6" HorizontalContentAlignment="Right" Content="Radio-button"/>
+                            <RadioButton x:Name="RadioButton_060" Content="RadioButton" Grid.Column="1" Grid.Row="6" />
+                            <RadioButton x:Name="RadioButton_061" Content="RadioButton" Grid.Column="2" Grid.Row="6" IsEnabled="False" GroupName="Disable" />
 
-                        <!--Row 07: ProgressBar component-->
-                        <Label x:Name="Label_ProgressBar_07" HorizontalContentAlignment="Right" Grid.Column="0" Grid.Row="7" Content="Progress-bar" />
-                        <ProgressBar Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="7" IsIndeterminate="True" />
+                            <!--Row 07: ProgressBar component-->
+                            <Label x:Name="Label_ProgressBar_07" HorizontalContentAlignment="Right" Grid.Column="0" Grid.Row="7" Content="Progress-bar" />
+                            <ProgressBar Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="7" IsIndeterminate="True" />
 
-                        <!--Row 08: TextBox component-->
-                        <Label x:Name="Label_TextBox_08" HorizontalContentAlignment="Right" Grid.Column="0" Grid.Row="8" Content="Text-box" />
-                        <TextBox x:Name="TextBox_080" Grid.Column="1" Grid.Row="8" Text="Text-box" />
-                        <TextBox x:Name="TextBox_081" Grid.Column="2" Grid.Row="8" Text="Text-box Disabled" IsEnabled="False" />
+                            <!--Row 08: TextBox component-->
+                            <Label x:Name="Label_TextBox_08" HorizontalContentAlignment="Right" Grid.Column="0" Grid.Row="8" Content="Text-box" />
+                            <TextBox x:Name="TextBox_080" Grid.Column="1" Grid.Row="8" Text="Text-box" />
+                            <TextBox x:Name="TextBox_081" Grid.Column="2" Grid.Row="8" Text="Text-box Disabled" IsEnabled="False" />
 
-                        <!--Row 09: Password component-->
-                        <Label x:Name="Label_PasswordBox_09" HorizontalContentAlignment="Right" Grid.Column="0" Grid.Row="9" Content="Password" />
-                        <PasswordBox x:Name="PasswordBox_090" Grid.Column="1" Grid.Row="9" Password="Password" />
-                        <PasswordBox x:Name="PasswordBox_091" Grid.Column="2" Grid.Row="9" Password="Password" IsEnabled="False"/>
+                            <!--Row 09: Password component-->
+                            <Label x:Name="Label_PasswordBox_09" HorizontalContentAlignment="Right" Grid.Column="0" Grid.Row="9" Content="Password" />
+                            <PasswordBox x:Name="PasswordBox_090" Grid.Column="1" Grid.Row="9" Password="Password" />
+                            <PasswordBox x:Name="PasswordBox_091" Grid.Column="2" Grid.Row="9" Password="Password" IsEnabled="False"/>
 
-                        <!--Row 10:-->
-                        <Label x:Name="Label_RadioButton_10" Grid.Column="0" Grid.Row="10" HorizontalContentAlignment="Right" Content="Radio-button"/>
-                        <RadioButton x:Name="RadioButton_100" Content="RadioButton" Grid.Column="1" Grid.Row="10" />
-                        <RadioButton x:Name="RadioButton_101" Content="RadioButton" Grid.Column="2" Grid.Row="10" IsChecked="True" IsEnabled="False" GroupName="Disable" />
+                            <!--Row 10:-->
+                            <Label x:Name="Label_RadioButton_10" Grid.Column="0" Grid.Row="10" HorizontalContentAlignment="Right" Content="Radio-button"/>
+                            <RadioButton x:Name="RadioButton_100" Content="RadioButton" Grid.Column="1" Grid.Row="10" />
+                            <RadioButton x:Name="RadioButton_101" Content="RadioButton" Grid.Column="2" Grid.Row="10" IsChecked="True" IsEnabled="False" GroupName="Disable" />
 
-                        <!--Row 11:-->
-                        <Label x:Name="Label_ToggleButton_11"  Grid.Column="0" Grid.Row="11" HorizontalContentAlignment="Right" Content="Toggle-button" />
-                        <ToggleButton x:Name="ToggleButton_110" Content="ToggleButton" Grid.Column="1" Grid.Row="11" />
-                        <ToggleButton x:Name="ToggleButton_111" Content="ToggleButton" Grid.Column="2" Grid.Row="11" IsEnabled="False" />
+                            <!--Row 11:-->
+                            <Label x:Name="Label_ToggleButton_11"  Grid.Column="0" Grid.Row="11" HorizontalContentAlignment="Right" Content="Toggle-button" />
+                            <ToggleButton x:Name="ToggleButton_110" Content="ToggleButton" Grid.Column="1" Grid.Row="11" />
+                            <ToggleButton x:Name="ToggleButton_111" Content="ToggleButton" Grid.Column="2" Grid.Row="11" IsEnabled="False" />
 
-                        <!--Row 12:-->
-                        <Label x:Name="Label_Button_12"  Grid.Column="0" Grid.Row="12" HorizontalContentAlignment="Right" Content="Button" />
-                        <Button x:Name="Button_120" Content="Button" Grid.Column="1" Grid.Row="12" />
-                        <Button x:Name="Button_121" Content="Button" Grid.Column="2" Grid.Row="12" IsEnabled="False" />
+                            <!--Row 12:-->
+                            <Label x:Name="Label_Button_12"  Grid.Column="0" Grid.Row="12" HorizontalContentAlignment="Right" Content="Button" />
+                            <Button x:Name="Button_120" Content="Button" Grid.Column="1" Grid.Row="12" />
+                            <Button x:Name="Button_121" Content="Button" Grid.Column="2" Grid.Row="12" IsEnabled="False" />
 
-                        <!--Row 13: Switch-->
-                        <Label x:Name="Label_Switch_13"  Grid.Column="0" Grid.Row="13" HorizontalContentAlignment="Right" Content="Switch" />
-                        <CheckBox Content="Switch CheckBox"  Grid.Column="1" Grid.Row="13" IsEnabled="True" Style="{StaticResource SwitchCheckBox}" />
-                        <CheckBox Content="Disabled Switch" Grid.Column="2" Grid.Row="13" IsEnabled="False" Style="{StaticResource SwitchCheckBox}" />
+                            <!--Row 13: Switch-->
+                            <Label x:Name="Label_Switch_13"  Grid.Column="0" Grid.Row="13" HorizontalContentAlignment="Right" Content="Switch" />
+                            <CheckBox Content="Switch CheckBox"  Grid.Column="1" Grid.Row="13" IsEnabled="True" Style="{StaticResource SwitchCheckBox}" />
+                            <CheckBox Content="Disabled Switch" Grid.Column="2" Grid.Row="13" IsEnabled="False" Style="{StaticResource SwitchCheckBox}" />
 
 
                         </Grid>
 
                         <Separator HorizontalAlignment="Stretch"/>
-                        
+
                         <TextBlock Text="Separated content" Height="50" HorizontalAlignment="Center" />
-                        
+
                     </StackPanel>
                 </Expander>
                 <Expander x:Name="FeatureExpander1" Header="IMAGE" IsExpanded="True" Background="{StaticResource WindowBackgroundBrush}" >
@@ -225,8 +224,8 @@
         <DockPanel Style="{StaticResource FlowPanel}">
             <ToggleButton Margin="0" Height="Auto" Content="PROJECT" Style="{DynamicResource FlowToggleButtonStyle}" d:LayoutOverrides="VerticalAlignment, TopMargin, BottomMargin" />
             <ToggleButton Margin="0" Height="Auto" Content="SAMPLE PREPARATION" Style="{DynamicResource FlowToggleButtonStyle}" d:LayoutOverrides="VerticalAlignment, TopMargin, BottomMargin" />
-            <ToggleButton Margin="0" Height="Auto" Content="MILLING" Style="{DynamicResource FlowToggleButtonStyle}" d:LayoutOverrides="VerticalAlignment, TopMargin, BottomMargin" />
-            <ToggleButton Margin="0" Height="Auto" Content="IMAGE" Style="{DynamicResource FlowToggleButtonStyle}" d:LayoutOverrides="VerticalAlignment, TopMargin, BottomMargin" IsEnabled="False"/>
+            <ToggleButton Margin="0" Height="Auto" Content="MILLING" Style="{DynamicResource FlowToggleButtonStyle}" d:LayoutOverrides="VerticalAlignment, TopMargin, BottomMargin" IsEnabled="False" />
+            <ToggleButton Margin="0" Height="Auto" Content="IMAGE" Style="{DynamicResource FlowToggleButtonStyle}" d:LayoutOverrides="VerticalAlignment, TopMargin, BottomMargin" />
 
             <StackPanel VerticalAlignment="Center">
                 <ProgressBar Margin="5" />
